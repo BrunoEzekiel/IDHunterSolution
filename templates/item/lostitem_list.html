@@ -1,0 +1,36 @@
+{% extends 'item/base.html' %}
+
+{% block title %}Itens Perdidos{% endblock %}
+
+{% block content %}
+  <h2>Itens Perdidos</h2>
+  <a href="{% url 'item:create' %}" class="btn btn-primary mb-3">Adicionar Item Perdido</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Local</th>
+        <th>Data</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+        <tr>
+          <td><a href="{% url 'item:detail' item.pk %}">{{ item.title }}</a></td>
+          <td>{{ item.lost_location }}</td>
+          <td>{{ item.lost_date }}</td>
+          <td>{{ item.get_status_display }}</td>
+          <td>
+            <a href="{% url 'item:update' item.pk %}" class="btn btn-sm btn-warning">Editar</a>
+            <a href="{% url 'item:delete' item.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">Nenhum item perdido encontrado.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

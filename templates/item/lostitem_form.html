@@ -1,0 +1,14 @@
+{% extends 'item/base.html' %}
+
+{% block title %}Cadastrar Item{% endblock %}
+
+{% block content %}
+<h2>{{ view.object.pk|yesno:"Editar Item,Cadastrar Novo Item" }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{% url 'lostitems:list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

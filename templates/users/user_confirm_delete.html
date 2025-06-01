@@ -1,0 +1,9 @@
+{% extends "users/base.html" %}
+{% block content %}
+<h3>Deseja realmente excluir o usuário "{{ user.username }}"?</h3>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sim, excluir</button>
+    <a href="{% url 'user_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

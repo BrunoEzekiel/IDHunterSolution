@@ -1,0 +1,20 @@
+{% extends 'item/base.html' %}
+
+{% block title %}Detalhes do Item{% endblock %}
+
+{% block content %}
+<h2>{{ object.title }}</h2>
+<p><strong>Descrição:</strong> {{ object.description }}</p>
+<p><strong>Local da perda:</strong> {{ object.lost_location }}</p>
+<p><strong>Data da perda:</strong> {{ object.lost_date }}</p>
+<p><strong>Status:</strong> {{ object.get_status_display }}</p>
+<p><strong>Recompensa:</strong> R$ {{ object.reward }}</p>
+
+{% if object.found_by %}
+<p><strong>Encontrado por:</strong> {{ object.found_by }}</p>
+{% endif %}
+
+<a href="{% url 'lostitems:update' object.pk %}" class="btn btn-warning">Editar</a>
+<a href="{% url 'lostitems:delete' object.pk %}" class="btn btn-danger">Excluir</a>
+<a href="{% url 'lostitems:list' %}" class="btn btn-secondary">Voltar</a>
+{% endblock %}
